@@ -1,9 +1,15 @@
-import 'package:batch3week3final/pagewallpaper/wallpaper.dart';
+import 'package:batch3week3final/pagewallpaper/basket.dart';
+import 'package:batch3week3final/pagewallpaper/bowling.dart';
+import 'package:batch3week3final/pagewallpaper/football.dart';
+import 'package:batch3week3final/pagewallpaper/golf.dart';
+import 'package:batch3week3final/pagewallpaper/tennis.dart';
+import 'package:batch3week3final/pagewallpaper/volley.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(MaterialApp(
-    home: Wallpaper(),
+    home: MyApp(),
     debugShowCheckedModeBanner: false,
   ));
 }
@@ -12,41 +18,56 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+
+  TabController _tabController;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(length: 6, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Week3"),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: new AppBar(
+            backgroundColor: Colors.white,
+            title: new TabBar(
+                isScrollable: true,
+                controller: _tabController,
 
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 250.0,
-                height: 50.0,
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=> Wallpaper()));
-                  },
-                  child: Text(
-                    "Task6 Walpaper",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                  textColor: Colors.black,
-                  color: Colors.lightBlueAccent,
+                indicator: UnderlineTabIndicator(
+                    borderSide: BorderSide(width: 15.0),
+                    insets: EdgeInsets.symmetric(horizontal:10.0)
                 ),
-              ),
-            ),
-          ],
+                unselectedLabelColor: Colors.lightGreen,
+                tabs: <Tab>[
+                  new Tab(icon: new Image.asset('gambar/football.png')),
+                  new Tab(icon: new Image.asset('gambar/basketball.png')),
+                  new Tab(icon: new Image.asset('gambar/volleyball.png')),
+                  new Tab(icon: new Image.asset('gambar/tennis.png')),
+                  new Tab(icon: new Image.asset('gambar/bowling.png')),
+                  new Tab(icon: new Image.asset('gambar/golf.png')),
+                ]
+            )
         ),
-      ),
+        backgroundColor: Colors.grey,
+        body: new TabBarView(
+            controller: _tabController,
+            children: <Widget>[
+              Football(),
+              Basket(),
+              Volley(),
+              Tennis(),
+              Bowling(),
+              Golf(),
+            ]
+        ),     ),
     );
   }
 }
