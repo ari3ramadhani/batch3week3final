@@ -27,11 +27,9 @@ class _BasketState extends State<Basket> {
     return "success";
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(20.0),
           child: AppBar(
@@ -54,17 +52,13 @@ class _BasketState extends State<Basket> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => DetailWallpaper(
-                                gambar: data[index]['urls']['small'],
-                                nama:data[index]['alt_description'],
-
-
-                              )));
+                                    gambar: data[index]['urls']['small'],
+                                    nama: data[index]['alt_description'],
+                                  )));
                     },
-
                     child: Container(
                       width: 300.0,
                       height: 300.0,
-
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: new Image.network(
@@ -74,11 +68,9 @@ class _BasketState extends State<Basket> {
                         ),
                       ),
                     ),
-
                   ),
                 ],
               );
-            })
-    );
+            }));
   }
 }

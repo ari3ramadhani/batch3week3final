@@ -6,22 +6,20 @@ import 'package:batch3week3final/pagewallpaper/tennis.dart';
 import 'package:batch3week3final/pagewallpaper/volley.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(MaterialApp(
     home: MyApp(),
     debugShowCheckedModeBanner: false,
   ));
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-
   TabController _tabController;
-
 
   @override
   void initState() {
@@ -40,11 +38,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             title: new TabBar(
                 isScrollable: true,
                 controller: _tabController,
-
                 indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(width: 15.0),
-                    insets: EdgeInsets.symmetric(horizontal:10.0)
-                ),
+                    insets: EdgeInsets.symmetric(horizontal: 10.0)),
                 unselectedLabelColor: Colors.lightGreen,
                 tabs: <Tab>[
                   new Tab(icon: new Image.asset('gambar/football.png')),
@@ -53,21 +49,17 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   new Tab(icon: new Image.asset('gambar/tennis.png')),
                   new Tab(icon: new Image.asset('gambar/bowling.png')),
                   new Tab(icon: new Image.asset('gambar/golf.png')),
-                ]
-            )
-        ),
+                ])),
         backgroundColor: Colors.grey,
-        body: new TabBarView(
-            controller: _tabController,
-            children: <Widget>[
-              Football(),
-              Basket(),
-              Volley(),
-              Tennis(),
-              Bowling(),
-              Golf(),
-            ]
-        ),     ),
+        body: new TabBarView(controller: _tabController, children: <Widget>[
+          Football(),
+          Basket(),
+          Volley(),
+          Tennis(),
+          Bowling(),
+          Golf(),
+        ]),
+      ),
     );
   }
 }

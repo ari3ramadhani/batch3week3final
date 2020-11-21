@@ -27,58 +27,50 @@ class _FootballState extends State<Football> {
     return "success";
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(20.0),
-            child: AppBar(
-              title: Center(child: Text('- - Football - -')),
-              backgroundColor: Colors.black,
-            ),
+    return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(20.0),
+          child: AppBar(
+            title: Center(child: Text('- - Football - -')),
+            backgroundColor: Colors.black,
           ),
-          body: GridView.builder(
-              itemCount: data == null ? 0 : data.length,
-              gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1,
-              ),
-              itemBuilder: (context, index) {
-                return Stack(
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailWallpaper(
-                                  gambar: data[index]['urls']['small'],
-                                    nama:data[index]['alt_description'],
-
-
-                                    )));
-                      },
-
-                      child: Container(
-                        width: 300.0,
-                        height: 300.0,
-
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: new Image.network(
-                            data[index]['urls']['small'],
-                            fit: BoxFit.cover,
-                            height: 500.0,
-                          ),
+        ),
+        body: GridView.builder(
+            itemCount: data == null ? 0 : data.length,
+            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 1,
+            ),
+            itemBuilder: (context, index) {
+              return Stack(
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailWallpaper(
+                                    gambar: data[index]['urls']['small'],
+                                    nama: data[index]['alt_description'],
+                                  )));
+                    },
+                    child: Container(
+                      width: 300.0,
+                      height: 300.0,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: new Image.network(
+                          data[index]['urls']['small'],
+                          fit: BoxFit.cover,
+                          height: 500.0,
                         ),
                       ),
-
                     ),
-                  ],
-                );
-              })
-    );
+                  ),
+                ],
+              );
+            }));
   }
 }
